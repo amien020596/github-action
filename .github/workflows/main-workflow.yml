@@ -18,3 +18,21 @@ jobs:
         username: ${{secrets.ftp_username}}
         password: ${{secrets.ftp_password}}
         server-dir: /
+    - name: Copy ENV Laravel Configuration for CI
+      run: php -r "file_exists('.env') || copy('.env.production', '.env');"
+
+    - name: Install Dependencies
+      run:
+        composer install
+
+    - name: Install NPM Dependencies
+      run: npm install
+
+    - name: Compile Assets
+      run: npm run production
+    
+    - name: Generate Key
+      run: php artisan key:generate
+
+    - name: Execute tests
+      run: vendor/bin/phpunit
