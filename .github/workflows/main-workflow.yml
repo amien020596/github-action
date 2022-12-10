@@ -18,6 +18,7 @@ jobs:
         username: ${{secrets.ftp_username}}
         password: ${{secrets.ftp_password}}
         server-dir: /
+        
     - name: Copy ENV Laravel Configuration for CI
       run: php -r "file_exists('.env') || copy('.env.production', '.env');"
 
