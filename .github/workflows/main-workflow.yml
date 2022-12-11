@@ -15,8 +15,8 @@ jobs:
     - name: Installing project dependencies
       run: npm install
 
-    - name: Building the project
-      run: npm run prod
+    # - name: Building the project
+    #   run: npm run prod
 
     - name: Install Dependencies
       run: composer install
@@ -27,8 +27,8 @@ jobs:
     - name: Generate Key
       run: php artisan key:generate
 
-    - name: Execute tests
-      run: vendor/bin/phpunit
+    # - name: Execute tests
+    #   run: vendor/bin/phpunit
 
     - name: Sync Files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
