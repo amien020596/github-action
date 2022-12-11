@@ -14,15 +14,16 @@ jobs:
     - name: Copy ENV Laravel Configuration for CI
       run: php -r "file_exists('.env') || copy('.env.production', '.env');"
 
-    # - name: Install Dependencies
-    #   run: composer install
+    - name: Install Dependencies
+      run: composer install
 
-    - name: Install NPM Dependencies
+    - uses: actions/setup-node@master
+    - name: Installing project dependencies
       run: npm install
 
-    - name: Compile Assets
+    - name: Building the project
       run: npm run production
-    
+
     - name: Generate Key
       run: php artisan key:generate
 
