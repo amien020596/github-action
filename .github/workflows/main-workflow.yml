@@ -19,13 +19,13 @@ jobs:
     
     - name: Generate Key
       run: php artisan key:generate
-      
-    # - uses: actions/setup-node@master
-    - name: Installing project dependencies
-      run: npm install
 
-    - name: Building the project
-      run: npm run production
+    # - uses: actions/setup-node@master
+    # - name: Installing project dependencies
+    #   run: npm install
+
+    # - name: Building the project
+    #   run: npm run production
 
     - name: Execute tests
       run: vendor/bin/phpunit
