@@ -10,19 +10,19 @@ jobs:
     steps:
     - name: get latest code
       uses: actions/checkout@v2
-        
-    - name: Copy ENV Laravel Configuration for CI
-      run: php -r "file_exists('.env') || copy('.env.production', '.env');"
-
-    - name: Install Dependencies
-      run: composer install
-
+    
     - uses: actions/setup-node@master
     - name: Installing project dependencies
       run: npm install
 
     - name: Building the project
       run: npm run prod
+
+    - name: Install Dependencies
+      run: composer install
+
+    - name: Copy ENV Laravel Configuration for CI
+      run: php -r "file_exists('.env') || copy('.env.production', '.env');"
 
     - name: Generate Key
       run: php artisan key:generate
