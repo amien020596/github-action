@@ -47,4 +47,5 @@ jobs:
         username: ${{secrets.ssh_username}}
         password: ${{secrets.ssh_password}}
         host: akdevstudios.com
+        port: 64000
         script: 'cd /home/akdevstu/studio1 && ./server_deploy.sh'
