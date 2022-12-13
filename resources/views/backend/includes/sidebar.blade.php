@@ -29,6 +29,47 @@
                 $logged_in_user->can('admin.access.user.change-password')
             )
         )
+            <li class="c-sidebar-nav-title">@lang('Main Apps')</li>
+             <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">
+                <x-utils.link
+                    href="#"
+                    icon="c-sidebar-nav-icon cil-user"
+                    class="c-sidebar-nav-dropdown-toggle"
+                    :text="__('Chat')" />
+
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @if (
+                        $logged_in_user->hasAllAccess() ||
+                        (
+                            $logged_in_user->can('admin.access.user.list') ||
+                            $logged_in_user->can('admin.access.user.deactivate') ||
+                            $logged_in_user->can('admin.access.user.reactivate') ||
+                            $logged_in_user->can('admin.access.user.clear-session') ||
+                            $logged_in_user->can('admin.access.user.impersonate') ||
+                            $logged_in_user->can('admin.access.user.change-password')
+                        )
+                    )
+                        <li class="c-sidebar-nav-item">
+                            <x-utils.link
+                                :href="route('admin.auth.user.index')"
+                                class="c-sidebar-nav-link"
+                                :text="__('Chat Management')"
+                                :active="activeClass(Route::is('admin.auth.user.*'), 'c-active')" />
+                        </li>
+                    @endif
+
+                    @if ($logged_in_user->hasAllAccess())
+                        <li class="c-sidebar-nav-item">
+                            <x-utils.link
+                                :href="route('admin.auth.role.index')"
+                                class="c-sidebar-nav-link"
+                                :text="__('Chat Actor Management')"
+                                :active="activeClass(Route::is('admin.auth.role.*'), 'c-active')" />
+                        </li>
+                    @endif
+                </ul>
+            </li>
+
             <li class="c-sidebar-nav-title">@lang('System')</li>
 
             <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">

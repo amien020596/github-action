@@ -39,6 +39,7 @@
 @section('scripts')
     <script>
         $(function() {
+            console.log("masuk ke sini")
             new Chart(document.getElementById("stats-doughnut-chart"), {
                 type: 'doughnut',
                 data: {!! $chartData !!},
